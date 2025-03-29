@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@features/Auth/schemas/loginSchema";
 import { loginFormDefaultValues } from "@features/Auth/const";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { AppActions } from "@app/slice";
 
 const useLogin = (props: ReceivedProps) => {
   const {
@@ -16,8 +18,11 @@ const useLogin = (props: ReceivedProps) => {
     resolver: yupResolver(loginSchema),
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    dispatch(AppActions.login({ body: data }));
+  };
 
   return {
     ...props,

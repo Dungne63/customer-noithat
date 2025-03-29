@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { RootState } from "src/services/store";
 
 interface AppState {
   isLoading: boolean;
   userInfo: {
     id: string | null;
     username: string | null;
-    role: string;
+    role: string | null;
   };
 }
 
@@ -15,7 +15,7 @@ const initialState: AppState = {
   userInfo: {
     id: null,
     username: null,
-    role: "guest",
+    role: null,
   },
 };
 
@@ -23,12 +23,18 @@ export const AppSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    login: (state, { payload }) => {},
+    logout: (state, { payload }) => {},
     setIsLoading: (state, { payload }) => {
       state.isLoading = payload;
     },
+    getUserInfo: (state, { payload }) => {},
     setUserInfo: (state, { payload }) => {
       state.userInfo = payload;
     },
+    resetPassword: (state, { payload }) => {},
+    conformOTP: (state, { payload }) => {},
+    updatePassword: (state, { payload }) => {},
   },
 });
 const AppReducer = AppSlice.reducer;

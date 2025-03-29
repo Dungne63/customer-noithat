@@ -1,23 +1,30 @@
 import AuthWrapper from "@features/Auth/components/AuthWrapper";
-import React from "react";
-import { useNavigate } from "react-router";
+import { FC } from "react";
+import useRegister, { Props, ReceivedProps } from "./hook";
 
-const Register: React.FC = () => {
-  const navigate = useNavigate();
+const RegisterLayout: FC<Props> = ({
+  currentStep,
+  stepComponent,
+  navigate,
+}) => {
   return (
     <AuthWrapper>
-      <div>
-        <div className="text-2xl font-semibold mb-4">Đăng ký</div>
-        <div></div>
-        <div
+      <div className="text-2xl font-semibold mb-4">Đăng ký</div>
+      <div>{stepComponent}</div>
+      <div className="text-right mt-2">
+        <span
           className="underline hover:text-secondary text-sm cursor-pointer"
           onClick={() => navigate("/login")}
         >
           Đã có tài khoản?
-        </div>
+        </span>
       </div>
     </AuthWrapper>
   );
 };
+
+const Register: FC<ReceivedProps> = (props) => (
+  <RegisterLayout {...useRegister(props)} />
+);
 
 export default Register;

@@ -5,6 +5,7 @@ import AuthLayout from "@layouts/AuthLayout";
 import MainLayout from "@layouts/MainLayout";
 import { useAuth } from "@hooks/useAuth";
 import { RouteWrapper } from "./RouteWrapper";
+import GlobalLoading from "@components/GlobalLoading";
 
 const HomePage = lazy(() => import("@features/Home"));
 const LoginPage = lazy(() => import("@features/Auth/pages/Login"));
@@ -91,7 +92,7 @@ function AppRouter() {
 
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<GlobalLoading />}>
         <RoutesRenderer routes={getRoutes()} />
       </Suspense>
     </Router>

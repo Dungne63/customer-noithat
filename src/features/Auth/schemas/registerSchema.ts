@@ -1,19 +1,34 @@
 import { validatePassword } from "@utils/validate.util";
 import * as yup from "yup";
 
-export const registerSchema = yup
+export const registerStep1Schema = yup
   .object({
-    username: yup
+    email: yup
       .string()
-      .min(5, "Họ và Tên phải có ít nhất 5 ký tự")
-      .max(30, "Họ và Tên có nhiều nhất 30 ký tự"),
+      .email("Email không hợp lệ")
+      .required("Không được bỏ trống email"),
+  })
+  .required();
+
+export const registerStep2Schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Email không hợp lệ")
+      .required("Không được bỏ trống email"),
+    otp: yup.string().required("Chưa điền OTP"),
+  })
+  .required();
+
+export const registerStep3Schema = yup
+  .object({
     email: yup
       .string()
       .email("Email không hợp lệ")
       .required("Không được bỏ trống email"),
     password: yup
       .string()
-      .required("Chưa điền mật khẩu mới")
+      .required("Chưa điền Mật khẩu")
       .test(
         "is-valid-new-password",
         'Mật khẩu bao gồm 8 đến 32 ký tự, chứa chữ cái in thường, in hoa, số và ký tự đặc biệt "@$!%*?&"',
@@ -26,7 +41,7 @@ export const registerSchema = yup
       .required("Chưa điền xác nhận mật khẩu")
       .oneOf(
         [yup.ref("newPassword"), ""],
-        "Mật khẩu xác nhận không khớp với mật khẩu mới"
+        "Mật khẩu xác nhận không khớp với mật khẩu"
       )
       .test(
         "is-valid-confirm-password",

@@ -1,9 +1,11 @@
 export const loginFormDefaultValues = {
-  username: "Nguyen Van A",
+  // username: "Nguyen Van A",
+  email: "",
   password: "",
 };
 
 export const registerFormDefaultValues = {
-  username: "",
+  // username: "",
+  email: "",
   password: "",
 };

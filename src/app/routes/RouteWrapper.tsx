@@ -1,11 +1,13 @@
-import { Navigate, Outlet, useLocation } from "react-router";
+import { matchPath, Navigate, Outlet, useLocation } from "react-router";
 import RolePaths from "../../config/permission";
-import { useAppSelector } from "../store";
 import { AppSelectors } from "../slice";
+import { useAppSelector } from "@services/store";
+import GlobalLoading from "@components/GlobalLoading";
 
 export function RouteWrapper() {
   const location = useLocation();
   const { role } = useAppSelector(AppSelectors.userInfo);
+  console.log("role", role);
   const handleDestination = () => {
     return role === "guest"
       ? "/login"
@@ -13,10 +15,17 @@ export function RouteWrapper() {
       ? "/permission-denied"
       : "/";
   };
+  if (role === null) {
+    return <GlobalLoading />;
+  }
 
   const allowedRoutes = RolePaths[role as string] || [];
 
-  if (!allowedRoutes.includes(location.pathname)) {
+  const isAllowed = allowedRoutes.some(
+    (path) => path === location.pathname || matchPath(path, location.pathname)
+  );
+
+  if (!isAllowed) {
     return <Navigate to={handleDestination()} replace />;
   }
 
