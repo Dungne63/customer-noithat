@@ -16,6 +16,7 @@ const VoucherPage = lazy(() => import("@features/Voucher/pages/Voucher"));
 const ContactPage = lazy(() => import("@features/Contact/pages/Contact"));
 const UserInfoPage = lazy(() => import("@features/UserInfo/pages/UserInfo"));
 const AllProductPage = lazy(() => import("@features/Product/pages/AllProduct"));
+const PaymentPage = lazy(() => import("@features/Payment"));
 
 export interface RoutesRendererProps {
   routes: RouteObject[];
@@ -82,6 +83,11 @@ function AppRouter() {
               path: ROUTE_PATHS.PRODUCT_ALL,
               element: <AllProductPage />,
               title: "Danh sách sản phẩm",
+            },
+            {
+              path: ROUTE_PATHS.PAYMENT,
+              element: <PaymentPage />,
+              title: "Thanh toán",
             },
           ],
         },

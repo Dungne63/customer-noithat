@@ -20,11 +20,8 @@ const useUserAddress = (props: ReceivedProps) => {
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
   const [province, setProvince] = useState<any>();
-  console.log("province", province);
   const [district, setDistrict] = useState<any>();
-  console.log("district", district);
   const [ward, setWard] = useState<any>();
-  console.log("ward", ward);
   const [address, setAddress] = useState("");
   const [isDefault, setIsDefault] = useState(false);
 

@@ -25,7 +25,6 @@ const UserInfoLayout: FC<Props> = ({
   onOpenUserAddress,
   addresses,
 }) => {
-  console.log("addresses", addresses);
   return (
     <div>
       <Modal

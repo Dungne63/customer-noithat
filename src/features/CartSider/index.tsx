@@ -22,6 +22,7 @@ const CartSiderLayout: FC<Props> = ({
   total,
   onClearCart,
   navigate,
+  checkout,
   onRemoveItem,
   onUpdateQuantityItemCart,
 }) => {
@@ -158,7 +159,10 @@ const CartSiderLayout: FC<Props> = ({
                   <Button
                     color="primary"
                     variant="ghost"
-                    onPress={onClose}
+                    onPress={() => {
+                      checkout();
+                      onClose();
+                    }}
                     className="w-full rounded-none"
                   >
                     Thanh toán

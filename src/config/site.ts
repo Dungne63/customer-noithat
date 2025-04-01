@@ -9,6 +9,13 @@ export const SITE_CONTACT = {
   ADDRESS: "Đường 123 - Hà Nội",
   PHONE: "0123456789",
   EMAIL: "dankkap@gmail.com",
+  FACEBOOK: "https://www.facebook.com/profile.php?id=61561242152562",
+};
+
+export const SITE_PAYMENT_INFO = {
+  BANK_NAME: "Ngân hàng Techcombank",
+  BANK_NUMBER: "123456789",
+  BANK_ACCOUNT_NAME: "PHAM VAN SON",
 };
 
 export const SITE_NAVBAR = [

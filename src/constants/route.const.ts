@@ -7,4 +7,5 @@ export const ROUTE_PATHS = {
   VOUCHER: "voucher",
   USER_INFO: "user-info",
   PRODUCT_ALL: "product-all",
+  PAYMENT: "payment",
 };
