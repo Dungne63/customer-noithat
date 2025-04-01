@@ -1,16 +1,17 @@
 import { SITE_NAME } from "@config/site";
 import React from "react";
-import HomeNotification from "./components/HomeNotification";
-import HomeInvoices from "./components/HomeInvoices";
+import HomeCategory from "./components/HomeCategory";
+import HomeProduct from "./components/HomeProduct";
+import HomeBanner from "./components/HomeBanner";
+import HomeBestSeller from "./components/HomeBestSeller";
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col">
-      <div className="my-3 text-lg font-semibold">
-        {SITE_NAME} xin chào, chúc bạn môt ngày tốt lành!
-      </div>
-      <HomeNotification />
-      <HomeInvoices />
+    <div className="flex flex-col mt-4 items-center gap-4">
+      <HomeBanner />
+      <HomeCategory />
+      <HomeProduct />
+      <HomeBestSeller />
     </div>
   );
 };

@@ -5,15 +5,18 @@ import AuthLayout from "@layouts/AuthLayout";
 import MainLayout from "@layouts/MainLayout";
 import { useAuth } from "@hooks/useAuth";
 import { RouteWrapper } from "./RouteWrapper";
+import GlobalLoading from "@components/GlobalLoading";
 
 const HomePage = lazy(() => import("@features/Home"));
 const LoginPage = lazy(() => import("@features/Auth/pages/Login"));
 const RegisterPage = lazy(() => import("@features/Auth/pages/Register"));
-const UserInfoPage = lazy(() => import("@features/UserInfo"));
 const NotFoundPage = lazy(() => import("@features/NotFound"));
 const PermissionDeniedPage = lazy(() => import("@features/PermissionDenied"));
 const VoucherPage = lazy(() => import("@features/Voucher/pages/Voucher"));
 const ContactPage = lazy(() => import("@features/Contact/pages/Contact"));
+const UserInfoPage = lazy(() => import("@features/UserInfo/pages/UserInfo"));
+const AllProductPage = lazy(() => import("@features/Product/pages/AllProduct"));
+const PaymentPage = lazy(() => import("@features/Payment"));
 
 export interface RoutesRendererProps {
   routes: RouteObject[];
@@ -62,11 +65,6 @@ function AppRouter() {
               title: "Trang chủ",
             },
             {
-              path: ROUTE_PATHS.USERINFO,
-              element: <UserInfoPage />,
-              title: "Thông tin người dùng",
-            },
-            {
               path: ROUTE_PATHS.VOUCHER,
               element: <VoucherPage />,
               title: "Voucher",
@@ -75,6 +73,21 @@ function AppRouter() {
               path: ROUTE_PATHS.CONTACT,
               element: <ContactPage />,
               title: "Liên hệ",
+            },
+            {
+              path: ROUTE_PATHS.USER_INFO,
+              element: <UserInfoPage />,
+              title: "Thông tin người dùng",
+            },
+            {
+              path: ROUTE_PATHS.PRODUCT_ALL,
+              element: <AllProductPage />,
+              title: "Danh sách sản phẩm",
+            },
+            {
+              path: ROUTE_PATHS.PAYMENT,
+              element: <PaymentPage />,
+              title: "Thanh toán",
             },
           ],
         },
@@ -91,7 +104,7 @@ function AppRouter() {
 
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<GlobalLoading />}>
         <RoutesRenderer routes={getRoutes()} />
       </Suspense>
     </Router>

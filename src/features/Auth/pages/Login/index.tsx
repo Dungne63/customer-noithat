@@ -1,6 +1,6 @@
 import AuthWrapper from "@features/Auth/components/AuthWrapper";
 import { FC } from "react";
-import useLogin, { Props, ReceivedProps } from "./hooks";
+import useLogin, { Props, ReceivedProps } from "./hook";
 import AppInput from "@components/common/AppInput";
 import { Button } from "@heroui/react";
 
@@ -17,10 +17,10 @@ const LoginLayout: FC<Props> = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-2xl font-semibold mb-4">Đăng nhập</div>
           <div>
-            <div className="mb-2">Tên đăng nhập</div>
-            <AppInput control={control} name="username" type="text" size="lg" />
+            <div className="mb-2">Email đăng nhập</div>
+            <AppInput control={control} name="email" type="text" size="lg" />
             <div className="text-danger text-xs mt-1">
-              {errors.username?.message}
+              {errors.email?.message}
             </div>
           </div>
           <div className="mt-4">

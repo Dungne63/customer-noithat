@@ -1,10 +1,11 @@
-import { HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
+import { store } from "@services/store";
 import { Provider } from "react-redux";
-import { store } from "./store";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <HeroUIProvider>
+      <ToastProvider />
       <Provider store={store}>{children}</Provider>
     </HeroUIProvider>
   );
