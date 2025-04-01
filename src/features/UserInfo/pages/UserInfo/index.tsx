@@ -92,29 +92,34 @@ const UserInfoLayout: FC<Props> = ({
                       Danh sách địa chỉ ({addresses?.length | 0})
                     </div>
                     <div className="flex flex-col gap-3 w-full">
-                      {addresses.map((item: any, index: number) => {
-                        return (
-                          <div
-                            key={index}
-                            className="flex justify-between w-full border-1 rounded-lg p-2 shadow-lg hover:scale-105 duration-200"
-                          >
-                            <div className="flex flex-col w-full">
-                              <div>
-                                <span className="font-semibold">địa chỉ:</span>{" "}
-                                {item.ward.name} - {item.district.name} -{" "}
-                                {item.province.name}
+                      {addresses?.length > 0 &&
+                        addresses.map((item: any, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className="flex justify-between w-full border-1 rounded-lg p-2 shadow-lg hover:scale-105 duration-200"
+                            >
+                              <div className="flex flex-col w-full">
+                                <div>
+                                  <span className="font-semibold">
+                                    địa chỉ:
+                                  </span>{" "}
+                                  {item.ward.name} - {item.district.name} -{" "}
+                                  {item.province.name}
+                                </div>
+                                <div>
+                                  <span className="font-semibold">
+                                    chi tiết:
+                                  </span>{" "}
+                                  {item.address}
+                                </div>
                               </div>
-                              <div>
-                                <span className="font-semibold">chi tiết:</span>{" "}
-                                {item.address}
+                              <div className="w-[100px]">
+                                {item?.isDefault && "(Mặc định)"}
                               </div>
                             </div>
-                            <div className="w-[100px]">
-                              {item?.isDefault && "(Mặc định)"}
-                            </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
                     </div>
 
                     <Button

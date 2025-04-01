@@ -15,7 +15,7 @@ export default function AppAccordion({
         {data.map((item, index) => {
           return item[childrenField as string] &&
             item[childrenField as string].length > 0 ? (
-            <div className=" border-b-1">
+            <div className=" border-b-1" key={index}>
               <Accordion
                 selectionMode="multiple"
                 key={item._id | index}
