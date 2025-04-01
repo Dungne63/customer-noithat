@@ -89,7 +89,7 @@ const UserInfoLayout: FC<Props> = ({
                   </div>
                   <div className="col-span-12">
                     <div className="text-xl mb-2">
-                      Danh sách địa chỉ ({addresses.length | 0})
+                      Danh sách địa chỉ ({addresses?.length | 0})
                     </div>
                     <div className="flex flex-col gap-3 w-full">
                       {addresses.map((item: any, index: number) => {
