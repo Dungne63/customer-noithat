@@ -29,7 +29,9 @@ const AppHeaderLayout: FC<Props> = ({
   currentPath,
   onOpenCategorySider,
   onOpenCartSider,
+  onOpenUserInfoModal,
   cartLength,
+  user,
 }) => {
   return (
     <div className="flex flex-col w-full bg-white">
@@ -80,26 +82,38 @@ const AppHeaderLayout: FC<Props> = ({
                 <ShoppingBagIcon className="size-6" />
               </Badge>
             </div>
-            <div className="flex items-center gap-1">
-              <div
-                className="flex text-sm hover:text-black cursor-pointer"
-                onClick={() => navigate("/" + ROUTE_PATHS.LOGIN)}
-              >
-                Đăng nhập
+            {user.id ? (
+              <div className="flex text-sm items-center gap-1 select-none">
+                Tài khoản{" "}
+                <div
+                  className="hover:text-black cursor-pointer font-semibold"
+                  onClick={onOpenUserInfoModal}
+                >
+                  {user.email}
+                </div>
               </div>
-              /
-              <div
-                className="flex text-sm hover:text-black cursor-pointer"
-                onClick={() => navigate("/" + ROUTE_PATHS.REGISTER)}
-              >
-                Đăng ký
+            ) : (
+              <div className="flex items-center gap-1">
+                <div
+                  className="flex text-sm hover:text-black cursor-pointer"
+                  onClick={() => navigate("/" + ROUTE_PATHS.LOGIN)}
+                >
+                  Đăng nhập
+                </div>
+                /
+                <div
+                  className="flex text-sm hover:text-black cursor-pointer"
+                  onClick={() => navigate("/" + ROUTE_PATHS.REGISTER)}
+                >
+                  Đăng ký
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="w-full flex justify-center px-4">
+      <div className="w-full flex justify-center px-4 select-none">
         <div className="max-w-[1280px] w-full">
           <Navbar
             maxWidth="full"
@@ -114,7 +128,7 @@ const AppHeaderLayout: FC<Props> = ({
             </div>
             <NavbarBrand>
               <div
-                className="text-primary font-bold text-2xl cursor-pointer flex gap-4 items-center"
+                className="text-primary font-bold text-2xl cursor-pointer flex gap-4 items-center select-none"
                 onClick={() => navigate("/")}
               >
                 <img src="/logo.jfif" className="w-[50px]" /> {SITE_NAME}

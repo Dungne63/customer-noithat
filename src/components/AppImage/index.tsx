@@ -1,16 +1,31 @@
 import { FC } from "react";
 
 const AppImage: FC<any> = ({ src, ...props }) => {
-  const formatBase64Image = (base64: string) => {
-    // Nếu có 2 lần `data:image`, chỉ lấy phần sau dấu phẩy cuối cùng
-    if (!base64) return null;
-    if (base64.includes("base64,")) {
-      return base64.substring(base64.lastIndexOf("data:image"));
-    }
-    return base64;
+  const checkingBase64 = (src: string) => {
+    return src.startsWith("data:image/");
   };
 
-  return <img src={formatBase64Image(src)} {...props} />;
+  const isFileName = (src: string) => {
+    return src.startsWith("/uploads");
+  };
+
+  const handleImageSource = (src: string) => {
+    // Nếu có 2 lần `data:image`, chỉ lấy phần sau dấu phẩy cuối cùng
+    if (!src) return null;
+    if (checkingBase64(src)) {
+      if (src.includes("base64,")) {
+        return src.substring(src.lastIndexOf("data:image"));
+      }
+    }
+
+    if (isFileName(src)) {
+      return import.meta.env.VITE_API_URL_WITHOUT_VERSION + src;
+    }
+
+    return src;
+  };
+
+  return <img src={handleImageSource(src)} {...props} />;
 };
 
 export default AppImage;

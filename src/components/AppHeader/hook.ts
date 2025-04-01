@@ -1,8 +1,10 @@
+import { AppSelectors } from "@app/slice";
 import {
   CartSiderActions,
   CartSiderSelectors,
 } from "@features/CartSider/services/slice";
 import { CategorySiderActions } from "@features/CategorySider/services/slice";
+import { UserInfoActions } from "@features/UserInfo/services/slice";
 import { useAppDispatch, useAppSelector } from "@services/store";
 import { useLocation, useNavigate } from "react-router";
 
@@ -14,6 +16,7 @@ const useAppHeader = (props: ReceivedProps) => {
   const dispatch = useAppDispatch();
 
   const cartLength = useAppSelector(CartSiderSelectors.cart)?.length || 0;
+  const user = useAppSelector(AppSelectors.userInfo);
 
   const onOpenCategorySider = () => {
     dispatch(CategorySiderActions.setIsOpening(true));
@@ -22,11 +25,17 @@ const useAppHeader = (props: ReceivedProps) => {
     dispatch(CartSiderActions.setIsOpening(true));
   };
 
+  const onOpenUserInfoModal = () => {
+    dispatch(UserInfoActions.setIsOpenModalUser(true));
+  };
+
   return {
+    user,
     navigate,
     currentPath,
     onOpenCategorySider,
     onOpenCartSider,
+    onOpenUserInfoModal,
     cartLength,
     ...props,
   };

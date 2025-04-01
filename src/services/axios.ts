@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import CONST from "../constants/app.const";
 import { getAccessToken, removeAccessToken } from "@utils/token.util";
 import { addToast } from "@heroui/react";
+import { useNavigate } from "react-router";
 
 const timeout = CONST.REQUEST.TIME_OUT;
 const AxiosClient = axios.create({
@@ -46,14 +47,13 @@ AxiosClient.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
 
-    if (error.response?.status === 401 || error.response?.status === 403) {
+    if (error.response?.status === 401) {
       addToast({
         title: "Thông báo",
         description: "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại",
         color: "danger",
       });
       removeAccessToken();
-      window.location.href = "/login";
     } else {
       addToast({
         title: "Lỗi",

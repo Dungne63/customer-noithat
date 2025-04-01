@@ -7,7 +7,6 @@ import GlobalLoading from "@components/GlobalLoading";
 export function RouteWrapper() {
   const location = useLocation();
   const { role } = useAppSelector(AppSelectors.userInfo);
-  console.log("role", role);
   const handleDestination = () => {
     return role === "guest"
       ? "/login"

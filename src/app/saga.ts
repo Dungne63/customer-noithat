@@ -8,6 +8,7 @@ import {
 } from "@utils/token.util";
 import { addToast } from "@heroui/react";
 import { PayloadAction } from "@reduxjs/toolkit";
+import { SITE_NAME } from "@config/site";
 
 export function* AppSaga() {
   yield takeLatest(AppActions.getUserInfo, getUserInfo);
@@ -18,31 +19,18 @@ export function* AppSaga() {
   yield takeLatest(AppActions.updatePassword, updatePassword);
 }
 
-export function* getUserInfo({ payload: { onSuccess } }: any) {
-  // try {
-  //   yield put(AppActions.setIsLoading(true));
-  //   yield delay(50);
-  //   const rs: { [x: string]: any } = yield SysFetch.get(`/admin/user-info`);
-  //   yield put(AppActions.setIsLoading(false));
-  //   if (rs.statusCode === 200) {
-  //     onSuccess?.(rs.data);
-  //   }
-  // } catch (error) {
-  //   yield put(AppActions.setIsLoading(false));
-  // }
-  const isLogin: [string: any] = yield getAccessToken();
-  if (isLogin) {
-    onSuccess?.({
-      id: "1",
-      username: "admin",
-      role: "admin",
-    });
-  } else {
-    onSuccess?.({
-      id: null,
-      username: null,
-      role: "guest",
-    });
+export function* getUserInfo({ payload: { onSuccess, onError } }: any) {
+  try {
+    yield put(AppActions.setIsLoading(true));
+    yield delay(50);
+    const rs: { [x: string]: any } = yield SysFetch.get(`/user/detail`);
+    yield put(AppActions.setIsLoading(false));
+    if (rs.statusCode === 200) {
+      onSuccess?.(rs.data.user);
+    } else throw new Error(`Lấy thông tin người dùng thất bại`);
+  } catch (error) {
+    onError?.();
+    yield put(AppActions.setIsLoading(false));
   }
 }
 
@@ -57,14 +45,14 @@ export function* login({ payload: { onSuccess, body } }: any) {
       yield storeAccessToken(rs.data.accessToken);
       addToast({
         title: "Đăng nhập thành công",
-        description: "Chào mừng bạn đến với hệ thống quản lý",
+        description: `Chào mừng bạn đến với ${SITE_NAME}`,
         color: "success",
       });
       yield put(
         AppActions.setUserInfo({
-          id: "1",
-          username: "admin",
-          role: "admin",
+          id: null,
+          email: null,
+          role: "user",
         })
       );
       onSuccess?.(rs.data);

@@ -8,8 +8,14 @@ import {
   DrawerFooter,
   DrawerHeader,
 } from "@heroui/react";
+import AppAccordion from "@components/common/AppAccordion";
 
-const CategorySiderLayout: FC<Props> = ({ isOpen, onClose }) => {
+const CategorySiderLayout: FC<Props> = ({
+  isOpen,
+  onClose,
+  categories,
+  navigate,
+}) => {
   return (
     <Drawer
       isOpen={isOpen}
@@ -34,23 +40,22 @@ const CategorySiderLayout: FC<Props> = ({ isOpen, onClose }) => {
         {(onClose) => (
           <>
             <DrawerHeader className="flex flex-col gap-1">
-              Custom Motion Drawer
+              Danh mục sản phẩm
             </DrawerHeader>
             <DrawerBody>
-              <p>This drawer has custom enter/exit animations.</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                pulvinar risus non risus hendrerit venenatis. Pellentesque sit
-                amet hendrerit risus, sed porttitor quam.
-              </p>
+              <AppAccordion
+                data={categories}
+                childrenField="children"
+                onChooseItem={(item) => navigate(`category/${item._id}`)}
+              />
             </DrawerBody>
             <DrawerFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Close
-              </Button>
-              <Button color="primary" onPress={onClose}>
+              {/* <Button color="danger" variant="light" onPress={onClose}>
+                Đóng
+              </Button> */}
+              {/* <Button color="primary" onPress={onClose}>
                 Action
-              </Button>
+              </Button> */}
             </DrawerFooter>
           </>
         )}

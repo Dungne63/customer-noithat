@@ -25,7 +25,6 @@ const AppSelect = <T extends Record<string, any>>({
       control={control}
       name={name}
       render={({ field: { value, onChange } }) => {
-        console.log("value", value);
         const handledValue =
           typeof value === "string" ? new Set([value]) : value;
         return (
