@@ -42,6 +42,7 @@ const usePayment = (props: ReceivedProps) => {
             selectedAddress?.province?.name,
           note,
         },
+        onSuccess: () => navigate("/"),
       })
     );
   };
