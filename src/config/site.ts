@@ -15,7 +15,7 @@ export const SITE_CONTACT = {
 export const SITE_PAYMENT_INFO = {
   BANK_NAME: "Ngân hàng Techcombank",
   BANK_NUMBER: "123456789",
-  BANK_ACCOUNT_NAME: "PHAM VAN SON",
+  BANK_ACCOUNT_NAME: "TRAN TIEN DUNG",
 };
 
 export const SITE_NAVBAR = [
