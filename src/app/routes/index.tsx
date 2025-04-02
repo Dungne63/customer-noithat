@@ -17,6 +17,10 @@ const ContactPage = lazy(() => import("@features/Contact/pages/Contact"));
 const UserInfoPage = lazy(() => import("@features/UserInfo/pages/UserInfo"));
 const AllProductPage = lazy(() => import("@features/Product/pages/AllProduct"));
 const PaymentPage = lazy(() => import("@features/Payment"));
+const ProductDetailPage = lazy(
+  () => import("@features/Product/pages/ProductDetail")
+);
+const OrderPage = lazy(() => import("@features/Order"));
 
 export interface RoutesRendererProps {
   routes: RouteObject[];
@@ -88,6 +92,16 @@ function AppRouter() {
               path: ROUTE_PATHS.PAYMENT,
               element: <PaymentPage />,
               title: "Thanh toán",
+            },
+            {
+              path: ROUTE_PATHS.PRODUCT,
+              element: <ProductDetailPage />,
+              title: "Thông tin sản phẩm",
+            },
+            {
+              path: ROUTE_PATHS.ORDER,
+              element: <OrderPage />,
+              title: "Danh sách đơn hàng",
             },
           ],
         },

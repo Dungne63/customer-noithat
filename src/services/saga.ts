@@ -2,6 +2,7 @@ import { AppSaga } from "@app/saga";
 import { CartSiderSaga } from "@features/CartSider/services/saga";
 import { CategorySiderSaga } from "@features/CategorySider/services/saga";
 import { HomeSaga } from "@features/Home/services/saga";
+import { OrderSaga } from "@features/Order/services/saga";
 import { PaymentSaga } from "@features/Payment/services/saga";
 import { ProductSaga } from "@features/Product/services/saga";
 import { UserInfoSaga } from "@features/UserInfo/services/saga";
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     call(UserInfoSaga),
     call(ProductSaga),
     call(PaymentSaga),
+    call(OrderSaga),
   ]);
 }

@@ -34,7 +34,7 @@ const AppHeaderLayout: FC<Props> = ({
   user,
 }) => {
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="flex flex-col w-full bg-white shadow-md">
       <div className="bg-orange-50 w-full flex justify-center px-4">
         <div className="flex w-full max-w-[1280px] items-center justify-between gap-4 h-[40px] shadow-sm border-b-1">
           <div className="flex gap-4">

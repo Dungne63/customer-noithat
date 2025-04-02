@@ -14,6 +14,7 @@ import AppSelect from "@components/common/AppSelect";
 import { gender } from "@features/UserInfo/services/const";
 import AppPhoneNumberInput from "@components/common/AppPhoneNumberInput";
 import AppDatePicker from "@components/common/AppDatePicker";
+import { NumberedListIcon } from "@heroicons/react/24/outline";
 
 const UserInfoLayout: FC<Props> = ({
   isOpen,
@@ -24,6 +25,7 @@ const UserInfoLayout: FC<Props> = ({
   control,
   onOpenUserAddress,
   addresses,
+  navigate,
 }) => {
   return (
     <div>
@@ -85,6 +87,18 @@ const UserInfoLayout: FC<Props> = ({
                     <div className="text-danger text-xs mt-1">
                       {errors.birthday?.message}
                     </div>
+                  </div>
+                  <div className="flex col-span-12 justify-start">
+                    <Button
+                      color="primary"
+                      onPress={() => {
+                        navigate("/order");
+                        onClose();
+                      }}
+                    >
+                      <NumberedListIcon className="size-5" />
+                      Xem danh sách đơn hàng
+                    </Button>
                   </div>
                   <div className="col-span-12">
                     <div className="text-xl mb-2">

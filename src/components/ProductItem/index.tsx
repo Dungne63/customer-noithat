@@ -24,7 +24,7 @@ export function ProductItem({ product }: { product: any }) {
       <div
         className="group transition-transform cursor-pointer border-2 border-transparent hover:border-gray-200  overflow-hidden p-4 duration-300 ease-in"
         onClick={() => {
-          navigate(`/${product.slug}`);
+          navigate(`/product/${product._id}`);
         }}
       >
         <div className="group">

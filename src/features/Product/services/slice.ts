@@ -14,9 +14,11 @@ export const ProductSlice = createSlice({
   initialState,
   reducers: {
     getProduct: (state, { payload }) => {},
+    getDetailProduct: (state, { payload }) => {},
     setProduct: (state, { payload }) => {
       state.products = payload;
     },
+    getReviewProduct: (state, { payload }) => {},
   },
 });
 const ProductReducer = ProductSlice.reducer;
