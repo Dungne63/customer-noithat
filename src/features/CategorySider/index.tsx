@@ -14,7 +14,7 @@ const CategorySiderLayout: FC<Props> = ({
   isOpen,
   onClose,
   categories,
-  navigate,
+  navigateWithQueryURL,
 }) => {
   return (
     <Drawer
@@ -46,7 +46,10 @@ const CategorySiderLayout: FC<Props> = ({
               <AppAccordion
                 data={categories}
                 childrenField="children"
-                onChooseItem={(item) => navigate(`category/${item._id}`)}
+                onChooseItem={(item) => {
+                  onClose();
+                  navigateWithQueryURL(item._id);
+                }}
               />
             </DrawerBody>
             <DrawerFooter>

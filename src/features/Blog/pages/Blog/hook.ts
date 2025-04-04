@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export type ReceivedProps = Record<string, any>;
 
@@ -13,20 +14,16 @@ export interface Blog {
   statusLabel: string;
 }
 
-export interface Props {
-  blogs: Blog[];
-  loading: boolean;
-}
-
-const useBlog = (props: ReceivedProps): Props => {
+const useBlog = (props: ReceivedProps) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const apiUrlWithoutVersion = import.meta.env.VITE_API_URL_WITHOUT_VERSION;
 
-    const token = localStorage.getItem('user_my_secret_key_24_@@@');
+    const token = localStorage.getItem("user_my_secret_key_24_@@@");
     if (!token) {
       console.error("Token không tồn tại.");
     }
@@ -35,14 +32,16 @@ const useBlog = (props: ReceivedProps): Props => {
       .get(`${apiUrl}/blog`, {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       })
       .then((res) => {
         if (res.data.statusCode === 200) {
           const blogsData = res.data.data.data.map((blog: Blog) => ({
             ...blog,
             image: `${apiUrlWithoutVersion}${blog.image}`,
-            images: blog.images.map((image: string) => `${apiUrlWithoutVersion}${image}`),
+            images: blog.images.map(
+              (image: string) => `${apiUrlWithoutVersion}${image}`
+            ),
           }));
           setBlogs(blogsData);
         }
@@ -57,8 +56,12 @@ const useBlog = (props: ReceivedProps): Props => {
 
   return {
     blogs,
+    navigate,
     loading,
+    ...props,
   };
 };
+
+export type Props = ReturnType<typeof useBlog>;
 
 export default useBlog;

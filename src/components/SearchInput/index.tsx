@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { Button, Input } from "@heroui/react";
+import { Button, Input, InputProps } from "@heroui/react";
 import { useCallback } from "react";
 
 export function SearchForm({
@@ -7,12 +7,13 @@ export function SearchForm({
   onChangeInput,
   onSearch,
   placeholder = "Nhập từ khóa tìm kiếm",
+  ...rest
 }: {
   valueInput: string;
   onChangeInput: (value: string) => void;
   onSearch: () => void;
   placeholder?: string;
-}) {
+} & InputProps) {
   const onSubmitSearch = useCallback(
     (event: any) => {
       onSearch();
@@ -23,20 +24,25 @@ export function SearchForm({
 
   return (
     <form onSubmit={onSubmitSearch}>
-      <div className="m-4 bg-white p-4 rounded-xl flex gap-4">
-        <Input
-          size="md"
-          placeholder={placeholder}
-          value={valueInput}
-          onChange={(e) => onChangeInput(e.target.value)}
-        />
-        <Button
-          type={"submit"}
-          startContent={<MagnifyingGlassIcon className="size-6" />}
-        >
-          Tìm kiếm
-        </Button>
-      </div>
+      <Input
+        size="md"
+        classNames={{ inputWrapper: "rounded-full shadow-inner" }}
+        placeholder={placeholder}
+        value={valueInput}
+        onValueChange={(e) => onChangeInput(e)}
+        {...rest}
+        endContent={
+          <Button
+            isIconOnly
+            variant="light"
+            size="sm"
+            type={"submit"}
+            // startContent={<MagnifyingGlassIcon className="size-6" />}
+          >
+            <MagnifyingGlassIcon className="size-5" />
+          </Button>
+        }
+      />
     </form>
   );
 }

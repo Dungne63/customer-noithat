@@ -8,7 +8,6 @@ import { ProductItem } from "@components/ProductItem";
 
 const ProductAllLayout: FC<Props> = ({
   products,
-  navigate,
   pagination,
   onChangePagination,
 }) => {

@@ -4,11 +4,14 @@ import {
 } from "@features/Product/services/slice";
 import { useAppDispatch, useAppSelector } from "@services/store";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export type ReceivedProps = Record<string, any>;
 
 const useProductAll = (props: ReceivedProps) => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const search = params.get("search");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const products = useAppSelector(ProductSelectors.products);
@@ -22,6 +25,7 @@ const useProductAll = (props: ReceivedProps) => {
   useEffect(() => {
     dispatch(
       ProductActions.getProduct({
+        search,
         pagination,
         onSuccess: (data: any) =>
           setPagination({
@@ -32,7 +36,7 @@ const useProductAll = (props: ReceivedProps) => {
           }),
       })
     );
-  }, [pagination.page]);
+  }, [pagination.page, search]);
 
   const onChangePagination = (page: number) => {
     setPagination((prev) => ({ ...prev, page }));

@@ -11,11 +11,15 @@ export function* ProductSaga() {
 }
 
 export function* getProduct({
-  payload: { onSuccess, pagination },
+  payload: { onSuccess, pagination, search },
 }: PayloadAction<any>) {
   try {
+    const body = {
+      ...pagination,
+      categories: search,
+    };
     const rs: { [x: string]: any } = yield SysFetch.get(
-      `/product?${qs.stringify(pagination)}`
+      `/product?${qs.stringify(body)}`
     );
     if (rs.statusCode === 200) {
       yield put(ProductActions.setProduct(rs.data.data));

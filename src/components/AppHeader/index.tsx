@@ -23,6 +23,9 @@ import { Link } from "react-router";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { ROUTE_PATHS } from "@constants/route.const";
 import { SearchForm } from "@components/SearchInput";
+import AppImage from "@components/AppImage";
+import formatVND from "@utils/format/format-vnd";
+import AppLoading from "@components/common/AppLoading";
 
 const AppHeaderLayout: FC<Props> = ({
   navigate,
@@ -31,7 +34,17 @@ const AppHeaderLayout: FC<Props> = ({
   onOpenCartSider,
   onOpenUserInfoModal,
   cartLength,
+  categories,
+  navigateWithQueryURL,
+  searchValue,
+  onFilterChange,
   user,
+  wrapperRef,
+  isOpenSearch,
+  setIsOpenSearch,
+  resultsSearch,
+  setResultsSearch,
+  isLoadingSearch,
 }) => {
   return (
     <div className="flex flex-col w-full bg-white shadow-md">
@@ -170,13 +183,13 @@ const AppHeaderLayout: FC<Props> = ({
                         base: "gap-4",
                       }}
                     >
-                      {item.children.map((child) => (
+                      {categories.map((cate) => (
                         <DropdownItem
-                          key={child.to}
+                          key={cate._id}
                           // description="ACME scales apps based on demand and load"
-                          onPress={() => navigate(child.to)}
+                          onPress={() => navigateWithQueryURL(cate._id)}
                         >
-                          {child.label}
+                          {cate.name}
                         </DropdownItem>
                       ))}
                     </DropdownMenu>
@@ -186,11 +199,54 @@ const AppHeaderLayout: FC<Props> = ({
             </NavbarContent>
             <NavbarContent justify="end">
               <NavbarItem className="hidden lg:flex">
-                {/* <SearchForm
-                  onChangeInput={() => null}
-                  onSearch={() => null}
-                  valueInput=""
-                /> */}
+                <div className="relative w-[300px]" ref={wrapperRef}>
+                  <SearchForm
+                    onChangeInput={(e) => onFilterChange(e)}
+                    onSearch={() => null}
+                    valueInput={searchValue}
+                    onFocus={() => setIsOpenSearch(true)}
+                  />
+                  {isOpenSearch && !!searchValue && (
+                    <div className="absolute top-11 p-2 shadow-lg border-1 rounded-xl w-full bg-white">
+                      {isLoadingSearch ? (
+                        <div className="h-[50px]">
+                          <AppLoading isLoading size="sm" />
+                        </div>
+                      ) : resultsSearch?.length > 0 ? (
+                        <div className="flex flex-col gap-2 max-h-[300px] overflow-y-auto">
+                          {resultsSearch.map((itemRsSearch: any) => (
+                            <div
+                              key={itemRsSearch._id}
+                              className="flex gap-2 items-center p-2 hover:bg-gray-100 cursor-pointer"
+                              onClick={() => {
+                                navigate(`/product/${itemRsSearch._id}`);
+                                setIsOpenSearch(false);
+                                onFilterChange(itemRsSearch.name);
+                                setResultsSearch([]);
+                              }}
+                            >
+                              <AppImage
+                                src={itemRsSearch.images[0]}
+                                alt={itemRsSearch.name}
+                                className="w-[50px] h-[50px] rounded-lg"
+                              />
+                              <div>
+                                <div className="font-semibold text-sm">
+                                  {itemRsSearch.name}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  {formatVND(itemRsSearch.price)}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div>Không tìm thấy sản phẩm nào</div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </NavbarItem>
             </NavbarContent>
           </Navbar>

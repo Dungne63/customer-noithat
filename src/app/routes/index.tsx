@@ -12,7 +12,7 @@ const LoginPage = lazy(() => import("@features/Auth/pages/Login"));
 const RegisterPage = lazy(() => import("@features/Auth/pages/Register"));
 const NotFoundPage = lazy(() => import("@features/NotFound"));
 const PermissionDeniedPage = lazy(() => import("@features/PermissionDenied"));
-const VoucherPage = lazy(() => import("@features/Voucher/pages/Voucher"));
+const VoucherPage = lazy(() => import("@features/Blog/pages/Blog"));
 const ContactPage = lazy(() => import("@features/Contact/pages/Contact"));
 const UserInfoPage = lazy(() => import("@features/UserInfo/pages/UserInfo"));
 const AllProductPage = lazy(() => import("@features/Product/pages/AllProduct"));
@@ -21,6 +21,7 @@ const ProductDetailPage = lazy(
   () => import("@features/Product/pages/ProductDetail")
 );
 const OrderPage = lazy(() => import("@features/Order"));
+const BlogDetailPage = lazy(() => import("@features/Blog/pages/BlogDetail"));
 
 export interface RoutesRendererProps {
   routes: RouteObject[];
@@ -102,6 +103,11 @@ function AppRouter() {
               path: ROUTE_PATHS.ORDER,
               element: <OrderPage />,
               title: "Danh sách đơn hàng",
+            },
+            {
+              path: ROUTE_PATHS.BLOG_DETAIL,
+              element: <BlogDetailPage />,
+              title: "Chi tiết bài viết",
             },
           ],
         },
