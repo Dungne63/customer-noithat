@@ -45,11 +45,11 @@ export const SITE_NAVBAR = [
     ],
   },
   {
-    label: "Voucher",
+    label: "Bài viết",
     to: ROUTE_PATHS.VOUCHER,
   },
   {
-    label: "Liên hệ",
+    label: "Góc cảm hứng",
     to: ROUTE_PATHS.CONTACT,
   },
 ];
