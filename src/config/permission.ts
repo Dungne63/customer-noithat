@@ -3,14 +3,14 @@ const RolePaths: { [key: string]: string[] } = {
   user: [
     "/",
     "/contact",
-    "/voucher",
+    "/blog",
     "/user-info",
     "/product-all",
     "/payment",
     "/product/:id",
     "/order",
   ],
-  guest: ["/", "/login", "/register", "/contact", "/voucher"],
+  guest: ["/", "/login", "/register", "/contact", "/blog"],
   onlyGuest: ["/login", "/register"],
 };
 

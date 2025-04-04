@@ -4,7 +4,7 @@ export const ROUTE_PATHS = {
   REGISTER: "register",
   PERMISSION_DENIED: "permission-denied",
   CONTACT: "contact",
-  VOUCHER: "voucher",
+  BLOG: "blog",
   USER_INFO: "user-info",
   PRODUCT_ALL: "product-all",
   PRODUCT: "product/:id",

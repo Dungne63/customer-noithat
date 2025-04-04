@@ -46,7 +46,7 @@ export const SITE_NAVBAR = [
   },
   {
     label: "Bài viết",
-    to: ROUTE_PATHS.VOUCHER,
+    to: ROUTE_PATHS.BLOG,
   },
   {
     label: "Góc cảm hứng",

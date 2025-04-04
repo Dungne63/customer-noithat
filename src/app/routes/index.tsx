@@ -69,9 +69,9 @@ function AppRouter() {
               title: "Trang chủ",
             },
             {
-              path: ROUTE_PATHS.VOUCHER,
+              path: ROUTE_PATHS.BLOG,
               element: <VoucherPage />,
-              title: "Voucher",
+              title: "Blog",
             },
             {
               path: ROUTE_PATHS.CONTACT,
