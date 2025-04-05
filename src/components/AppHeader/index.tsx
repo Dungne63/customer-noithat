@@ -45,10 +45,14 @@ const AppHeaderLayout: FC<Props> = ({
   resultsSearch,
   setResultsSearch,
   isLoadingSearch,
+  show,
 }) => {
   return (
-    <div className="flex flex-col w-full bg-white shadow-md">
-      <div className="bg-orange-50 w-full flex justify-center px-4">
+    <div className={`flex flex-col w-full bg-white shadow-md relative`}>
+      <div
+        className="bg-orange-50 w-full flex justify-center px-4"
+        data-aos="fade-down"
+      >
         <div className="flex w-full max-w-[1280px] items-center justify-between gap-4 h-[40px] shadow-sm border-b-1">
           <div className="flex gap-4">
             <div className="flex items-center gap-1 font-semibold">
@@ -126,8 +130,12 @@ const AppHeaderLayout: FC<Props> = ({
         </div>
       </div>
 
-      <div className="w-full flex justify-center px-4 select-none">
-        <div className="max-w-[1280px] w-full">
+      <div
+        className={`w-full flex justify-center px-4 select-none  transition-all bg-white duration-300 z-50 ${
+          show && "fixed top-0 opacity-100"
+        }`}
+      >
+        <div className="max-w-[1280px] w-full" data-aos="fade-down">
           <Navbar
             maxWidth="full"
             classNames={{

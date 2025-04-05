@@ -5,7 +5,7 @@ const HomeLabel: React.FC<{ label: string; right?: ReactNode }> = ({
   right,
 }) => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center" data-aos="zoom-in">
       <div className="text-primary text-xl my-4 font-semibold">{label}</div>
       <div>{right}</div>
     </div>

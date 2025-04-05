@@ -29,10 +29,11 @@ const ProductAllLayout: FC<Props> = ({
   return (
     <div className="w-full flex justify-center mt-8">
       <div className="w-full max-w-[1280px]">
+        <h2 className="text-2xl font-bold mb-4">Danh sách sản phẩm</h2>
         <div className="grid grid-cols-12 w-full gap-1 mb-8">
           {products.map((item: any) => {
             return (
-              <div className="col-span-4" key={item._id}>
+              <div className="col-span-4" key={item._id} data-aos="fade-up">
                 <ProductItem product={item} />
               </div>
             );

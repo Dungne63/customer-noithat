@@ -1,4 +1,3 @@
-import { SITE_NAME } from "@config/site";
 import React from "react";
 import HomeCategory from "./components/HomeCategory";
 import HomeProduct from "./components/HomeProduct";

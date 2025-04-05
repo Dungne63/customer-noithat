@@ -1,12 +1,9 @@
 import { FC } from "react";
 import useHomeProduct, { Props, ReceivedProps } from "./hook";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import AppImage from "@components/AppImage";
 import HomeLabel from "../HomeLabel";
-import formatVND from "@utils/format/format-vnd";
 import { Button } from "@heroui/react";
 import { ROUTE_PATHS } from "@constants/route.const";
 import { ProductItem } from "@components/ProductItem";
@@ -31,6 +28,7 @@ const ButtonCarouselGroup = ({ next, previous }: any) => {
 };
 
 const HomeProductLayout: FC<Props> = ({ products, responsive, navigate }) => {
+  console.log("===>>>");
   return (
     <div className="max-w-[1280px] w-full">
       <HomeLabel

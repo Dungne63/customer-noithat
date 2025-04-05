@@ -20,7 +20,7 @@ export function ProductItem({ product }: { product: any }) {
   };
 
   return (
-    <div className="col-span-4">
+    <div className="col-span-4" data-aos="fade-up">
       <div
         className="group transition-transform cursor-pointer border-2 border-transparent hover:border-gray-200  overflow-hidden p-4 duration-300 ease-in"
         onClick={() => {

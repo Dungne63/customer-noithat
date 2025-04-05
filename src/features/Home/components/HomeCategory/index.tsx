@@ -13,6 +13,7 @@ const HomeCategoryLayout: FC<Props> = ({ mockCategory, navigate }) => {
             } border-1 overflow-hidden shadow-inner cursor-pointer bg-black group`}
             key={item._id}
             onClick={() => navigate("/")}
+            data-aos={item.aos}
           >
             <AppImage
               src={item.image}

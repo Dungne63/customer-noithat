@@ -43,7 +43,7 @@ const HomeBannerLayout: FC<Props> = ({ banners, responsive, navigate }) => {
         {banners.map((oneBanner, index) => {
           return (
             <div
-              data-aos="fade-up"
+              data-aos="zoom-in"
               key={`slide-banner-${index}`}
               className="h-screen max-md:h-[170px] cursor-pointer"
               onClick={() => {

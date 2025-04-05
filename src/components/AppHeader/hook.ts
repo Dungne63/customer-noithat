@@ -26,6 +26,17 @@ const useAppHeader = (props: ReceivedProps) => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>();
   const [resultsSearch, setResultsSearch] = useState<any>([]);
   const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
+  const [show, setShow] = useState(false);
+  console.log("show", show);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShow(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -127,6 +138,7 @@ const useAppHeader = (props: ReceivedProps) => {
     resultsSearch,
     setResultsSearch,
     isLoadingSearch,
+    show,
     ...props,
   };
 };
