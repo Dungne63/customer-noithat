@@ -1,3 +1,4 @@
+import { AppActions } from "@app/slice";
 import { editUserSchemas } from "@features/UserInfo/schemas/editUserSchemas";
 import { defaultEditUserForm } from "@features/UserInfo/services/const";
 import {
@@ -55,7 +56,12 @@ const useUserInfo = (props: ReceivedProps) => {
     dispatch(UserInfoActions.updateUserInfo({ body: data }));
   };
 
+  const onLogout = () => {
+    dispatch(AppActions.logout({ onSuccess: onClose }));
+  };
+
   return {
+    onLogout,
     navigate,
     userInfo,
     isOpen,

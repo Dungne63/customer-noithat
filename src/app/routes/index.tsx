@@ -9,6 +9,9 @@ import GlobalLoading from "@components/GlobalLoading";
 
 const HomePage = lazy(() => import("@features/Home"));
 const LoginPage = lazy(() => import("@features/Auth/pages/Login"));
+const ForgotPasswordPage = lazy(
+  () => import("@features/Auth/pages/ForgotPassword")
+);
 const RegisterPage = lazy(() => import("@features/Auth/pages/Register"));
 const NotFoundPage = lazy(() => import("@features/NotFound"));
 const PermissionDeniedPage = lazy(() => import("@features/PermissionDenied"));
@@ -54,6 +57,11 @@ function AppRouter() {
             {
               path: ROUTE_PATHS.LOGIN,
               element: <LoginPage />,
+              title: "",
+            },
+            {
+              path: ROUTE_PATHS.FORGOT_PASSWORD,
+              element: <ForgotPasswordPage />,
               title: "",
             },
           ],

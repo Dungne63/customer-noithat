@@ -71,7 +71,7 @@ export function* logout({ payload: { onSuccess } }: any) {
   try {
     yield put(AppActions.setIsLoading(true));
     yield delay(50);
-    const rs: { [x: string]: any } = yield SysFetch.post(`/admin/logout`, {
+    const rs: { [x: string]: any } = yield SysFetch.post(`/user/logout`, {
       accessToken,
     });
     yield put(AppActions.setIsLoading(false));
@@ -97,14 +97,14 @@ export function* logout({ payload: { onSuccess } }: any) {
 }
 
 function* resetPassword({ payload }: PayloadAction<any>) {
-  const { email, onSuccess } = payload;
+  const { email, onSuccess, action } = payload;
 
   try {
     yield put(AppActions.setIsLoading(true));
     yield delay(50);
     const rs: {
       [x: string]: any;
-    } = yield SysFetch.post(`user/register`, {
+    } = yield SysFetch.post(`user/${action}`, {
       email,
     });
 

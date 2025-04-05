@@ -2,6 +2,7 @@ export const ROUTE_PATHS = {
   DEFAULT: "",
   LOGIN: "login",
   REGISTER: "register",
+  FORGOT_PASSWORD: "forgot-password",
   PERMISSION_DENIED: "permission-denied",
   CONTACT: "contact",
   BLOG: "blog",

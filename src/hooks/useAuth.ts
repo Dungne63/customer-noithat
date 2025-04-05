@@ -1,14 +1,15 @@
 // import { useSelector } from "react-redux";
 // import { RootState } from "../store";
 
-import { AppActions } from "@app/slice";
-import { useAppDispatch } from "@services/store";
+import { AppActions, AppSelectors } from "@app/slice";
+import { useAppDispatch, useAppSelector } from "@services/store";
 import { getAccessToken } from "@utils/token.util";
 import { useEffect } from "react";
 
 export function useAuth() {
   const dispatch = useAppDispatch();
   const isLogin = getAccessToken();
+  const userInfo = useAppSelector(AppSelectors.userInfo);
 
   useEffect(() => {
     if (!!isLogin) {
@@ -41,5 +42,5 @@ export function useAuth() {
         })
       );
     }
-  }, [dispatch, isLogin]);
+  }, [dispatch, isLogin, userInfo.role]);
 }

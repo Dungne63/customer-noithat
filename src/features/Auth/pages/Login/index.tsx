@@ -3,6 +3,7 @@ import { FC } from "react";
 import useLogin, { Props, ReceivedProps } from "./hook";
 import AppInput from "@components/common/AppInput";
 import { Button } from "@heroui/react";
+import { ROUTE_PATHS } from "@constants/route.const";
 
 const LoginLayout: FC<Props> = ({
   control,
@@ -38,9 +39,17 @@ const LoginLayout: FC<Props> = ({
           <div className="text-right mt-2">
             <span
               className="underline hover:text-secondary text-sm cursor-pointer"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/" + ROUTE_PATHS.REGISTER)}
             >
               Chưa có tài khoản?
+            </span>
+          </div>
+          <div className="text-right mt-2">
+            <span
+              className="underline hover:text-secondary text-sm cursor-pointer"
+              onClick={() => navigate("/" + ROUTE_PATHS.FORGOT_PASSWORD)}
+            >
+              Quên mật khẩu
             </span>
           </div>
         </form>

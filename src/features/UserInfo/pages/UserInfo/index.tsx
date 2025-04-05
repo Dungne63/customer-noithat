@@ -26,6 +26,7 @@ const UserInfoLayout: FC<Props> = ({
   onOpenUserAddress,
   addresses,
   navigate,
+  onLogout,
 }) => {
   return (
     <div>
@@ -146,12 +147,20 @@ const UserInfoLayout: FC<Props> = ({
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Đóng
-                </Button>
-                <Button color="primary" type="submit">
-                  Lưu
-                </Button>
+                <div className="w-full flex justify-between gap-2">
+                  <Button color="secondary" onPress={onLogout}>
+                    Đăng xuất tài khoản
+                  </Button>
+
+                  <div className="flex gap-2">
+                    <Button color="danger" variant="light" onPress={onClose}>
+                      Đóng
+                    </Button>
+                    <Button color="primary" type="submit">
+                      Lưu
+                    </Button>
+                  </div>
+                </div>
               </ModalFooter>
             </>
           </ModalContent>
