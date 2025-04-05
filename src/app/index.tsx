@@ -7,7 +7,6 @@ import "aos/dist/aos.css";
 
 function App() {
   useEffect(() => {
-    console.log("AOS initialized");
     AOS.init({
       duration: 1000,
       once: false,

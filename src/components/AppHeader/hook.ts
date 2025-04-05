@@ -27,7 +27,6 @@ const useAppHeader = (props: ReceivedProps) => {
   const [resultsSearch, setResultsSearch] = useState<any>([]);
   const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
   const [show, setShow] = useState(false);
-  console.log("show", show);
 
   useEffect(() => {
     const handleScroll = () => {

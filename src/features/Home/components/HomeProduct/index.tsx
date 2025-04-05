@@ -28,7 +28,6 @@ const ButtonCarouselGroup = ({ next, previous }: any) => {
 };
 
 const HomeProductLayout: FC<Props> = ({ products, responsive, navigate }) => {
-  console.log("===>>>");
   return (
     <div className="max-w-[1280px] w-full">
       <HomeLabel
