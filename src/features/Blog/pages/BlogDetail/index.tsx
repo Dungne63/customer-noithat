@@ -53,7 +53,7 @@ const BlogDetail: FC = () => {
           alt={blog?.title}
           className="w-full h-80 object-cover rounded-md mb-4"
         />
-        <p className="text-gray-700">{blog.content}</p>
+        <p className="text-gray-700 whitespace-pre-line">{blog.content}</p>
       </div>
     )
   );

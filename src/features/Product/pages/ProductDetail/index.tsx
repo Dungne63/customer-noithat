@@ -148,12 +148,12 @@ const ProductDetailLayout: FC<Props> = ({
                     </div>
                   </Tab>
                   <Tab title="Chính sách bảo hành">
-                    <div className="p-2 border-2 min-h-[100px]">
+                    <div className="p-2 border-2 whitespace-pre-line min-h-[100px]">
                       <div>{productDetail.warranty}</div>
                     </div>
                   </Tab>
                   <Tab title="Thông tin vận chuyển">
-                    <div className="p-2 border-2 min-h-[100px]">
+                    <div className="p-2 border-2 whitespace-pre-line min-h-[100px]">
                       <div>{productDetail.shippingInfo}</div>
                     </div>
                   </Tab>
